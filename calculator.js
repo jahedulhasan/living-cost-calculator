@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             let value = context.raw;
                             value = value > Math.floor(value) + 0.5 ? Math.ceil(value) : Math.floor(value);
                             const period = document.getElementById('calculationMode').checked ? 'Year' : 'Month';
-                            return `Living Cost per ${period}: ৳ ${value.toLocaleString()}`;
+                            return `Living Cost per ${period}: ৳${value.toLocaleString()}`;
                         }
                     }
                 }
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     beginAtZero: true,
                     ticks: {
                         callback: function(value) {
-                            return '৳ ' + Math.round(value).toLocaleString();
+                            return '৳' + Math.round(value).toLocaleString();
                         }
                     }
                 }
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${row.year}</td>
-                <td>৳ ${Math.round(row.cost).toLocaleString()}</td>
+                <td>৳${Math.round(row.cost).toLocaleString()}</td>
             `;
             tbody.appendChild(tr);
         });
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateFutureCost(finalData) {
         const period = calculationMode.checked ? 'per year' : 'per month';
         document.getElementById('futureCost').textContent =
-            `Living Cost of Year ${finalData.year} will be ৳ ${Math.round(finalData.cost).toLocaleString()} ${period}`;
+            `Living Cost of Year ${finalData.year} will be ৳${Math.round(finalData.cost).toLocaleString()} ${period}`;
     }
 
     // Initial calculation
