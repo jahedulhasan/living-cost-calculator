@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living Cost Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="theme-switch">
+        <button class="btn btn-outline-primary" id="themeToggle">
+            <i class="fas fa-sun"></i>
+        </button>
+    </div>
+    <div class="container-fluid py-4">
+        <div class="row">
+            <!-- Cost of Living Column -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Future Living Cost Calculator</h5>
+                        <form id="inflationForm">
+                            <div class="mb-3">
+                                <label class="form-label d-flex justify-content-between align-items-center">
+                                    Calculation Mode
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="calculationMode">
+                                        <label class="form-check-label" for="calculationMode">Monthly/Yearly</label>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="currentCost" class="form-label">Current Living Cost <span id="periodLabel">Per Month</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text">৳</span>
+                                    <input type="number" class="form-control" id="currentCost" value="50000" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inflationRate" class="form-label">Inflation Rate</label>
+                                <div class="input-group">
+                                    <input type="range" class="form-range" id="inflationRate" min="1" max="15" step="0.1" value="10">
+                                    <span id="inflationRateValue" class="ms-2">10.0% p.a.</span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="targetYear" class="form-label">Which Year You Want to Know the Living Cost</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="targetYear" value="2035" min="2024" required>
+                                    <span class="input-group-text">year</span>
+                                </div>
+                                <div id="yearError" class="invalid-feedback">
+                                    Invalid year. Please enter a year after 2024 (e.g., 2035)
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Graph/Summary Column -->
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="nav nav-tabs mb-3" id="calculatorTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="graph-tab" data-bs-toggle="tab" data-bs-target="#graph" type="button">Graph</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="summary-tab" data-bs-toggle="tab" data-bs-target="#summary" type="button">Summary</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="calculatorTabContent">
+                            <div class="tab-pane fade show active" id="graph">
+                                <canvas id="inflationChart"></canvas>
+                            </div>
+                            <div class="tab-pane fade" id="summary">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Year</th>
+                                                <th>Cost <span class="period-label">Per Month</span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="summaryTableBody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 id="futureCost">Living Cost of Year 2035 will be ৳ 0 per month</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions Column -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Instructions</h5>
+                        <ul class="instruction-list">
+                            <li>Choose calculation mode (Monthly/Yearly)</li>
+                            <li>Enter your current living cost</li>
+                            <li>Adjust the inflation rate using the slider</li>
+                            <li>Enter the future year you want to calculate for</li>
+                            <li>View results in graph or summary format</li>
+                            <li>All calculations update automatically</li>
+                        </ul>
+                        <p>Made by <a href="https://github.com/jahedulhasan">Jahedul Hasan</a></p>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="calculator.js"></script>
+</body>
+</html>
